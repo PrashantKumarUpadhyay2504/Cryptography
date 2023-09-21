@@ -60,32 +60,24 @@ public class AffineCipher {
             switch (choice) {
                 case 1:
                     System.out.print("Enter plaintext (lowercase only): ");
-                    scanner.nextLine();  // Consume the newline character
+                    // scanner.nextLine(); // Consume the newline character
                     text = scanner.nextLine();
-                    System.out.print("Enter 'a' value (an integer coprime with 26): ");
-                    a = scanner.nextInt();
-                    System.out.print("Enter 'b' value (an integer): ");
-                    b = scanner.nextInt();
-                    int flag=0;
-                    for( int i=0 ; i<text.length() ; i++){
-                        if(text.charAt(i)>='a'&& text.charAt(i)<='z'){
-                            continue;
-                        }else{
-                            flag=1;
-                            break;
-                        }
-                    }
-                    if(flag==1){
+                    if (text.matches("^[a-z]+$")) {
+                        System.out.print("Enter 'a' value (an integer coprime with 26): ");
+                        a = scanner.nextInt();
+                        System.out.print("Enter 'b' value (an integer): ");
+                        b = scanner.nextInt();
                         String ciphertext = encrypt(text, a, b);
                         System.out.println("Encrypted message (uppercase): " + ciphertext);
-                    }else{
-                        System.out.println("Please Enter in lowercase");
+                    } else {
+                        System.out.println("Please enter in lowerCase");
                     }
+
                     break;
 
                 case 2:
                     System.out.print("Enter ciphertext (uppercase only): ");
-                    scanner.nextLine();  // Consume the newline character
+                    scanner.nextLine(); // Consume the newline character
                     text = scanner.nextLine();
                     System.out.print("Enter 'a' value (an integer coprime with 26): ");
                     a = scanner.nextInt();
@@ -97,7 +89,7 @@ public class AffineCipher {
 
                 case 3:
                     System.out.print("Enter ciphertext (uppercase only): ");
-                    scanner.nextLine();  // Consume the newline character
+                    scanner.nextLine(); // Consume the newline character
                     text = scanner.nextLine();
                     System.out.println("Brute Force Decryption:");
                     for (int i = 1; i < 26; i++) {
