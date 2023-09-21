@@ -66,8 +66,21 @@ public class AffineCipher {
                     a = scanner.nextInt();
                     System.out.print("Enter 'b' value (an integer): ");
                     b = scanner.nextInt();
-                    String ciphertext = encrypt(text, a, b);
-                    System.out.println("Encrypted message (uppercase): " + ciphertext);
+                    int flag=0;
+                    for( int i=0 ; i<text.length() ; i++){
+                        if(text.charAt(i)>='a'&& text.charAt(i)<='z'){
+                            continue;
+                        }else{
+                            flag=1;
+                            break;
+                        }
+                    }
+                    if(flag==1){
+                        String ciphertext = encrypt(text, a, b);
+                        System.out.println("Encrypted message (uppercase): " + ciphertext);
+                    }else{
+                        System.out.println("Please Enter in lowercase");
+                    }
                     break;
 
                 case 2:
