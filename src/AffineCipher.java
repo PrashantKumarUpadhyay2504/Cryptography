@@ -78,14 +78,14 @@ public class AffineCipher {
                     System.out.print("Enter ciphertext (uppercase only): ");
                     scanner.nextLine(); // Consume the newline character
                     text = scanner.nextLine();
-                    if(text.matches("^[A-Z]+$")){
+                    if (text.matches("^[A-Z]+$")) {
                         System.out.print("Enter 'a' value (an integer coprime with 26): ");
-                    a = scanner.nextInt();
-                    System.out.print("Enter 'b' value (an integer): ");
-                    b = scanner.nextInt();
-                    String decryptedText = decrypt(text, a, b);
-                    System.out.println("Decrypted message (lowercase): " + decryptedText);
-                    }else{
+                        a = scanner.nextInt();
+                        System.out.print("Enter 'b' value (an integer): ");
+                        b = scanner.nextInt();
+                        String decryptedText = decrypt(text, a, b);
+                        System.out.println("Decrypted message (lowercase): " + decryptedText);
+                    } else {
                         System.out.println("Please enter in UpperCase");
                     }
                     break;
