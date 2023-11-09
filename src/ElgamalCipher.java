@@ -2,7 +2,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Scanner;
 
-public class ElgamalEncryption {
+public class ElgamalCipher {
     private static BigInteger p; // Prime number
     private static BigInteger g; // Primitive root modulo p
     private static BigInteger x; // Private key
