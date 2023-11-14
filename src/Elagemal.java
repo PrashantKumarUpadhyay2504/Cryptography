@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class PrimitiveRoots {
+public class Elagemal {
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
         int n, e1, d, r, pt;
