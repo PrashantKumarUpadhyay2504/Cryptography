@@ -18,7 +18,7 @@ class RSA {
 		p = sc.nextInt();
 
 		// 2nd prime number q
-        System.out.println("Enter value of p (Prime no. is valid): ");
+        System.out.println("Enter value of q (Prime no. is valid): ");
 		q = sc.nextInt();
 		n = p * q;
 		z = (p - 1) * (q - 1);
