@@ -6,7 +6,7 @@ public class RabinMillerPrimalityTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a number to test for primality: ");
+        System.out.print("Enter a number to test for primality check: ");
         long numberToTest = scanner.nextLong();
 
         if (isPrime(numberToTest, 5)) {

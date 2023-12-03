@@ -62,22 +62,8 @@ public class MultiplicativeCipher {
                     text = scanner.nextLine();
                     System.out.print("Enter key (an integer coprime with 26): ");
                     key = scanner.nextInt();
-                    String ciphertext="";
-                    char chr=' ';
-                    for(int i=0 ; i< text.length() ; i++){
-                        if(text.charAt(i)>='a'&& text.charAt(i)<='z'){
-                            ciphertext = encrypt(text, key);
-                        }else{
-                            chr=text.charAt(i);
-                        }
-                    }
-                     
-                    if(Character.isLowerCase(chr)){
-                        System.out.println("Encrypted message (uppercase): " + ciphertext);
-                    }else{
-                        System.out.println("Not in LowerCase");
-                    }
-                    
+                    String ciphertext = encrypt(text, key);
+                    System.out.println("Encrypted message (uppercase): " + ciphertext);
                     break;
 
                 case 2:
@@ -86,22 +72,8 @@ public class MultiplicativeCipher {
                     text = scanner.nextLine();
                     System.out.print("Enter key (an integer coprime with 26): ");
                     key = scanner.nextInt();
-                    String decryptedText="";
-                    char chr1=' ';
-                    for(int i=0 ; i< text.length() ; i++){
-                        if(text.charAt(i)>='A'&& text.charAt(i)<='Z'){
-                            decryptedText = decrypt(text, key);
-                            
-                        }else{
-                            System.out.println("Not in Upper Case ");
-                            break;
-                        }
-                    }
-                     if(Character.isLowerCase(chr1)){
-                        System.out.println("Encrypted message (uppercase): " + decryptedText);
-                    }else{
-                        System.out.println("Not in LowerCase");
-                    }
+                    String decryptedText = decrypt(text, key);
+                    System.out.println("Decrypted message (lowercase): " + decryptedText);
                     break;
 
                 case 3:
@@ -119,7 +91,7 @@ public class MultiplicativeCipher {
                     System.out.println("Exiting the program.");
                     scanner.close();
                     System.exit(0);
-
+                break;
                 default:
                     System.out.println("Invalid choice. Please enter 1, 2, 3, or 4.");
             }
