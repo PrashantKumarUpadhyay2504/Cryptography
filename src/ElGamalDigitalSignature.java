@@ -9,7 +9,10 @@ public class ElGamalDigitalSignature {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        KeyPair keyPair = generateKeys();
+        Key publicKey = getPublicKeyFromUser(scanner);
+        BigInteger privateKey = getPrivateKeyFromUser(scanner, publicKey.q);
+
+        KeyPair keyPair = new KeyPair(publicKey, privateKey);
 
         System.out.println("Public Key (p, g, y, q): " + keyPair.publicKey);
         System.out.println("Private Key (x): " + keyPair.privateKey);
@@ -26,22 +29,42 @@ public class ElGamalDigitalSignature {
         scanner.close();
     }
 
+    private static Key getPublicKeyFromUser(Scanner scanner) {
+        System.out.print("Enter the prime number (p): ");
+        BigInteger p = new BigInteger(scanner.nextLine());
+
+        System.out.print("Enter the primitive root modulo p (g): ");
+        BigInteger g = new BigInteger(scanner.nextLine());
+
+        System.out.print("Enter the public key (y): ");
+        BigInteger y = new BigInteger(scanner.nextLine());
+
+        System.out.print("Enter the order of the subgroup (q): ");
+        BigInteger q = new BigInteger(scanner.nextLine());
+
+        return new Key(p, g, y, q);
+    }
+
+    private static BigInteger getPrivateKeyFromUser(Scanner scanner, BigInteger q) {
+        System.out.print("Enter the private key (x): ");
+        BigInteger x = new BigInteger(scanner.nextLine());
+
+        // Ensure private key is less than q
+        while (x.compareTo(q) >= 0) {
+            System.out.println("Private key should be less than q. Enter a valid private key: ");
+            x = new BigInteger(scanner.nextLine());
+        }
+
+        return x;
+    }
+
     private static KeyPair generateKeys() {
-        Random random = new Random();
-        BigInteger q = BigInteger.probablePrime(160, random);
-        BigInteger p = q.multiply(BigInteger.valueOf(2)).add(BigInteger.ONE);
-        BigInteger g, x;
+        Scanner scanner = new Scanner(System.in);
 
-        do {
-            g = new BigInteger(p.bitLength(), random);
-        } while (g.compareTo(BigInteger.TWO) < 0 || g.compareTo(p.subtract(BigInteger.ONE)) > 0);
+        Key publicKey = getPublicKeyFromUser(scanner);
+        BigInteger privateKey = getPrivateKeyFromUser(scanner, publicKey.q);
 
-        do {
-            x = new BigInteger(q.bitLength(), random);
-        } while (x.compareTo(q) >= 0);
-
-        BigInteger y = g.modPow(x, p);
-        return new KeyPair(new Key(p, g, y, q), x);
+        return new KeyPair(publicKey, privateKey);
     }
 
     private static BigInteger[] generateSignature(String message, KeyPair keyPair) {
