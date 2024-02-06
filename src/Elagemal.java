@@ -16,6 +16,7 @@ public class Elagemal {
             e1 = scn.nextInt();
         } while (!roots.contains(e1));
         do {
+
             System.out.printf("Enter a private key between %d to %d\n", 1, n -
                     2);
             d = scn.nextInt();
